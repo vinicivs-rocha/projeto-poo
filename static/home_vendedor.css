@@ -1,0 +1,12 @@
+.screen-box {
+    background-color: #f5811e;
+    max-width: 583px;
+}
+
+[class^='fi']:before,
+[class*=' fi']:before,
+[class^='fi']:after,
+[class*=' fi']:after {
+    font-size: 4em;
+}
+
