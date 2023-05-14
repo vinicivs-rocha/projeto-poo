@@ -28,13 +28,7 @@
                             <i class="fi fi-rr-user d-flex"></i>
                         </div>
                         <div class="nav-item col">
-                            <p class="nav-link mb-0">
-                                <a
-                                    href="#"
-                                    class="text-decoration-none text-dark"
-                                    >Estoque</a
-                                >
-                            </p>
+                            <p class="nav-link mb-0">Estoque</p>
                         </div>
                     </div>
                 </div>
@@ -46,6 +40,9 @@
                     <button
                         type="button"
                         class="btn btn-light d-flex flex-column align-items-center shadow-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-criar"
+                        data-image="../static/images/empty.png"
                     >
                         <i class="fi fi-rr-boxes button-icons"></i>
                         Atualizar estoque
@@ -66,7 +63,7 @@
             <div id="modalAtualizacao" class="modal fade" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
-                        <form>
+                        <form method="post">
                             <div class="modal-header">
                                 <h5 class="modal-title">Atualizar produto</h5>
                                 <button
@@ -178,6 +175,116 @@
                                     >
                                         Remover
                                     </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-criar" tabindex="-2">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <form action="#" method="post">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adicionar produto</h5>
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row gx-3">
+                                        <div
+                                            class="col-4 d-flex flex-column align-items-center"
+                                        >
+                                            <label
+                                                for="imagem-produto"
+                                                class="col-form-label"
+                                                >Imagem do produto</label
+                                            >
+                                            <img
+                                                src=""
+                                                alt="Imagem do produto"
+                                                id="modal-criar-image"
+                                                class="img-fluid mb-3"
+                                            />
+                                            <input
+                                                type="file"
+                                                class="form-control"
+                                                name="image"
+                                            />
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label
+                                                        for="modal-name"
+                                                        class="col-form-label"
+                                                        >Nome</label
+                                                    >
+                                                    <input
+                                                        type="text"
+                                                        name="name"
+                                                        class="form-control"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="row g-3">
+                                                <div class="col-6">
+                                                    <label
+                                                        for="modal-price"
+                                                        class="col-form-label"
+                                                        >Preço</label
+                                                    >
+                                                    <div class="input-group">
+                                                        <span
+                                                            class="input-group-text"
+                                                            >R$</span
+                                                        >
+                                                        <input
+                                                            type="number"
+                                                            name="price"
+                                                            class="form-control"
+                                                            step="0.01"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label
+                                                        for="modal-quantity"
+                                                        class="col-form-label"
+                                                        >Quantidade</label
+                                                    >
+                                                    <div class="input-group">
+                                                        <input
+                                                            type="number"
+                                                            name="quantity"
+                                                            class="form-control"
+                                                        />
+                                                        <span
+                                                            class="input-group-text"
+                                                            >unid.</span
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div
+                                    class="container-fluid d-flex flex-row justify-content-center align-items-center"
+                                >
+                                    <button
+                                        type="submit"
+                                        class="btn btn-submit"
+                                    >
+                                        Adicionar
+                                    </button>
                                 </div>
                             </div>
                         </form>
