@@ -407,7 +407,7 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"
         ></script>
-        <script src="../static/js/modal.js"></script>
+        <script src="../static/js/estoque.js"></script>
     </body>
 </html>
 
