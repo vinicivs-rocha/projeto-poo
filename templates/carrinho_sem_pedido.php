@@ -87,6 +87,7 @@
                                     class="form-control"
                                     list="client-cpf-options"
                                     id="client-cpf"
+                                    name="client-cpf"
                                 />
                                 <datalist id="client-cpf-options">
                                     <option value="123.456.789-10"></option>
