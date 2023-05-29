@@ -29,26 +29,18 @@
                     class="row d-flex flex-row justify-content-center align-items-center gx-4"
                 >
                     <div class="col-3">
-                        <a href="#" class="btn btn-light shadow">
-                            <i class="fi fi-rr-id-card-clip-alt"></i>
-                            <p class="mb-0 mt-3 text-capitalize">
-                                Cadastrar cliente
-                            </p>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a href="#" class="btn btn-light shadow">
+                        <a href="<?=base_url('main/verificar_carrinho')?>" class="btn btn-light shadow">
                             <i class="fi fi-rr-user-pen"></i>
                             <p class="mb-0 mt-3 text-capitalize">
-                                Editar cliente
+                                Verificar Carrinho
                             </p>
                         </a>
                     </div>
                     <div class="col-3">
-                        <a href="#" class="btn btn-light shadow">
+                        <a href="<?=base_url('main/tela_vendedor')?>" class="btn btn-light shadow">
                             <i class="fi fi-rr-box-open-full"></i>
                             <p class="mb-0 mt-3 text-capitalize">
-                                Criar pedido
+                                Tela do Vendedor
                             </p>
                         </a>
                     </div>

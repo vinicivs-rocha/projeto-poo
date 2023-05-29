@@ -19,13 +19,14 @@
                 class="container-sm d-flex rounded pt-5 shadow h-100 flex-column justify-content-around screen-box"
             >
                 <h1 class="text-uppercase fs-3 text-center">Login</h1>
-                <form>
+                <form action="<?=base_url('main/login')?>" method="POST">
                     <div class="mb-3">
                         <label for="username" class="form-label">Usuário</label>
                         <input
                             type="text"
                             class="form-control is-invalid"
                             id="username"
+                            name= "username"
                             placeholder="nome-de-usuario"
                         />
                         <div class="invalid-feedback">
@@ -37,6 +38,7 @@
                         <input
                             type="password"
                             id="password"
+                            name="password"
                             class="form-control"
                         />
                     </div>
@@ -55,6 +57,7 @@
                 </div>
             </div>
         </div>
+
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
