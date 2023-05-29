@@ -30,7 +30,7 @@
                 >
                     <div class="col-3">
                         <a href="<?=base_url('main/verificar_carrinho')?>" class="btn btn-light shadow">
-                            <i class="fi fi-rr-user-pen"></i>
+                            <i class="fi fi-rr-shopping-cart"></i>
                             <p class="mb-0 mt-3 text-capitalize">
                                 Verificar Carrinho
                             </p>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-3">
                         <a href="<?=base_url('main/tela_vendedor')?>" class="btn btn-light shadow">
-                            <i class="fi fi-rr-box-open-full"></i>
+                            <i class="fi fi-rr-ticket"></i>
                             <p class="mb-0 mt-3 text-capitalize">
                                 Tela do Vendedor
                             </p>
