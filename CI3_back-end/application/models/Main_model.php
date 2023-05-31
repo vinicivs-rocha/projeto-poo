@@ -10,6 +10,7 @@ class Main_model extends CI_Model
             $query2 = "SELECT * FROM usuarios WHERE email = '" . $dados_login["email"] . "' and senha = '" . $dados_login["senha"] . "'";
             $dados_login = $this->db->query($query2)->result_array();
         }
+        //var_dump($dados_login);exit;
         return array("logado" => $logado[0]["logado"], "dados_login" => $dados_login[0]);
     }
 }

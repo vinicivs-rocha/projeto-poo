@@ -34,15 +34,15 @@ class Estoquista extends CI_Controller
     }
 
     
-    public function registrar_produto() //função ajax para registrar produtos novos usando post
+    public function registro_produtos() //função ajax para registrar produtos novos usando post
     {
         $nome_produto = $this->input->post("nome_produto");
-        $codigo = $this->input->post("codigo_produto");
+        // $codigo = $this->input->post("codigo_produto");
         $estoque = $this->input->post("estoque_produto");
         $preco = $this->input->post("preco_produto");
         $produtos = [
             "nome_produto" => $nome_produto,
-            "codigo" => $codigo,
+            //"codigo" => $codigo,
             "estoque" => $estoque,
             "saida" => "0",
             "preco" => $preco
