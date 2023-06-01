@@ -42,7 +42,8 @@
                         class="btn btn-light d-flex flex-column align-items-center shadow-sm"
                         data-bs-toggle="modal"
                         data-bs-target="#modal-criar"
-                        data-image="../static/images/empty.png"
+                        data-image="
+                        "
                     >
                         <i class="fi fi-rr-boxes button-icons"></i>
                         Atualizar estoque
@@ -292,7 +293,7 @@
                 </div>
             </div>
             <div class="container-fluid gap-3 mt-3 mb-3">
-                <div class="row row-cols-3">
+                <div class="row row-cols-3" id="container-row">
                     <div class="col-xxl">
                         <div class="card">
                             <img
@@ -327,81 +328,63 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl">
-                        <div class="card">
-                            <img
-                                src="../static/images/produto-2.png"
-                                alt="imagem-produto-1"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Argamassa para Assentamento de Porcelanato
-                                    Interno E Externo 20kg Branca
-                                </h5>
-                            </div>
-                            <div
-                                class="card-footer d-flex flex-row justify-content-between"
-                            >
-                                <p class="mb-0 d-flex align-items-center">
-                                    Quantidade: 75
-                                </p>
-                                <a href="#" class="text-decoration-none">
-                                    <button
-                                        type="button"
-                                        class="btn btn-light d-flex"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalAtualizacao"
-                                        data-image="../static/images/produto-2.png"
-                                        data-name="Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca"
-                                        data-price="142.50"
-                                        data-quantity="100"
-                                        data-id="2"
-                                    >
-                                        <i class="fi fi-rr-menu-dots"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl">
-                        <div class="card">
-                            <img
-                                src="../static/images/produto-1.png"
-                                alt="imagem-produto-1"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Argamassa AC I Cerâmica Uso Interno Kerakoll
-                                    Cimentolit 20Kg
-                                </h5>
-                            </div>
-                            <div
-                                class="card-footer d-flex flex-row justify-content-between"
-                            >
-                                <p class="mb-0 d-flex align-items-center">
-                                    Quantidade: 80
-                                </p>
-                                <a href="#" class="text-decoration-none">
-                                    <button
-                                        type="button"
-                                        class="btn btn-light d-flex"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalAtualizacao"
-                                        data-image="../static/images/produto-1.png"
-                                        data-name="Argamassa AC I Cerâmica Uso Interno Kerakoll Cimentolit 20Kg"
-                                        data-price="120.00"
-                                        data-quantity="80"
-                                        data-id="3"
-                                    >
-                                        <i class="fi fi-rr-menu-dots"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $(document).ready(buscarProdutos)
+
+            let containerRow = $("#container-row")
+
+            function buscarProdutos() {
+                $.ajax({
+                    url: '',
+                    type: "GET",
+                    dataType: "JSON",
+                    cache: false,
+                    success: montarProdutos
+                })
+            }
+            function montarProdutos(data) {
+                data.forEach(product => {
+                    containerRow.append(`
+                    <div class="col-xxl">
+                        <div class="card">
+                            <img
+                                src="${product.image}"
+                                alt="imagem-produto-1"
+                            />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    ${product.name}
+                                </h5>
+                            </div>
+                            <div
+                                class="card-footer d-flex flex-row justify-content-between"
+                            >
+                                <p class="mb-0 d-flex align-items-center">
+                                    Quantidade: ${product.quantity}
+                                </p>
+                                <button
+                                    type="button"
+                                    class="btn btn-light d-flex"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalAtualizacao"
+                                    data-image="${product.image}"
+                                    data-name="${product.name}"
+                                    data-price="${product.price}"
+                                    data-quantity="${product.quantity}"
+                                    data-id="${product.id}"
+                                >
+                                    <i class="fi fi-rr-menu-dots"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>`)
+                });
+            }
+        </script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
