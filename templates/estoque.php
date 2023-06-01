@@ -65,6 +65,7 @@
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <form method="post">
+                            <input type="number" name="id_produto" id="modal-id" class="d-none">
                             <div class="modal-header">
                                 <h5 class="modal-title">Atualizar produto</h5>
                                 <button
