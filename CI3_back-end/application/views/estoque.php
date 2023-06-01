@@ -15,7 +15,7 @@
             rel="stylesheet"
             href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
         />
-        <link rel="stylesheet" href="../static/estoque.css" />
+        <link rel="stylesheet" href="static/estoque.css" />
     </head>
     <body>
         <header>
@@ -49,7 +49,7 @@
                         Atualizar estoque
                     </button>
                 </a>
-                <a href="#" class="text-decoration-none">
+                <a href="<?=base_url('main/retornar_home_estoquista')?>" class="text-decoration-none">
                     <button
                         type="button"
                         class="btn btn-light d-flex flex-column align-items-center shadow-sm"
@@ -170,8 +170,9 @@
                                     >
                                         Atualizar
                                     </button>
+                                    <!-- Modelar o ajax para essa função -->
                                     <a
-                                        href=""
+                                        href="<?=base_url('estoquista/remover_produto')?>"
                                         class="btn btn-danger"
                                         id="remove-button"
                                     >
@@ -186,7 +187,7 @@
             <div class="modal fade" id="modal-criar" tabindex="-2">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
-                        <form action="#" method="post">
+                        <form action="<?=base_url('estoquista/registro_produtos')?>" method="post">
                             <div class="modal-header">
                                 <h5 class="modal-title">Adicionar produto</h5>
                                 <button
@@ -229,7 +230,7 @@
                                                     >
                                                     <input
                                                         type="text"
-                                                        name="name"
+                                                        name="nome_produto"
                                                         class="form-control"
                                                     />
                                                 </div>
@@ -248,7 +249,7 @@
                                                         >
                                                         <input
                                                             type="number"
-                                                            name="price"
+                                                            name="preco_produto"
                                                             class="form-control"
                                                             step="0.01"
                                                         />
@@ -263,7 +264,7 @@
                                                     <div class="input-group">
                                                         <input
                                                             type="number"
-                                                            name="quantity"
+                                                            name="estoque_produto"
                                                             class="form-control"
                                                         />
                                                         <span
@@ -298,7 +299,7 @@
                     <div class="col-xxl">
                         <div class="card">
                             <img
-                                src="../static/images/produto-1.png"
+                                src="./static/images/produto-1.png"
                                 alt="imagem-produto-1"
                             />
                             <div class="card-body">
@@ -318,7 +319,7 @@
                                     class="btn btn-light d-flex"
                                     data-bs-toggle="modal"
                                     data-bs-target="#modalAtualizacao"
-                                    data-image="../static/images/produto-1.png"
+                                    data-image="./static/images/produto-1.png"
                                     data-name="Argamassa AC I Cerâmica Uso Interno Kerakoll Cimentolit 20Kg"
                                     data-price="120.00"
                                     data-quantity="80"
@@ -326,6 +327,78 @@
                                 >
                                     <i class="fi fi-rr-menu-dots"></i>
                                 </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl">
+                        <div class="card">
+                            <img
+                                src="./static/images/produto-2.png"
+                                alt="imagem-produto-1"
+                            />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Argamassa para Assentamento de Porcelanato
+                                    Interno E Externo 20kg Branca
+                                </h5>
+                            </div>
+                            <div
+                                class="card-footer d-flex flex-row justify-content-between"
+                            >
+                                <p class="mb-0 d-flex align-items-center">
+                                    Quantidade: 75
+                                </p>
+                                <a href="#" class="text-decoration-none">
+                                    <button
+                                        type="button"
+                                        class="btn btn-light d-flex"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalAtualizacao"
+                                        data-image="./static/images/produto-2.png"
+                                        data-name="Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca"
+                                        data-price="142.50"
+                                        data-quantity="100"
+                                        data-id="2"
+                                    >
+                                        <i class="fi fi-rr-menu-dots"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl">
+                        <div class="card">
+                            <img
+                                src="./static/images/produto-1.png"
+                                alt="imagem-produto-1"
+                            />
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Argamassa AC I Cerâmica Uso Interno Kerakoll
+                                    Cimentolit 20Kg
+                                </h5>
+                            </div>
+                            <div
+                                class="card-footer d-flex flex-row justify-content-between"
+                            >
+                                <p class="mb-0 d-flex align-items-center">
+                                    Quantidade: 80
+                                </p>
+                                <a href="#" class="text-decoration-none">
+                                    <button
+                                        type="button"
+                                        class="btn btn-light d-flex"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalAtualizacao"
+                                        data-image="./static/images/produto-1.png"
+                                        data-name="Argamassa AC I Cerâmica Uso Interno Kerakoll Cimentolit 20Kg"
+                                        data-price="120.00"
+                                        data-quantity="80"
+                                        data-id="3"
+                                    >
+                                        <i class="fi fi-rr-menu-dots"></i>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -391,7 +464,7 @@
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"
         ></script>
-        <script src="../static/js/estoque.js"></script>
+        <script src="./static/js/estoque.js"></script>
     </body>
 </html>
 

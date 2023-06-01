@@ -45,7 +45,7 @@ class Vendedor extends CI_Controller
         $data = date("d/m/Y");
         $vendedor_id = $this->session->userdata("vendedor_id");
 
-        /* 
+        /*
         usar essa função para o checkbox quando for testar se o usuário está passando valor do produto ou um valor que entrou em acordo
         if ($("#meuCheckbox").is(":checked")) {
  
