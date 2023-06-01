@@ -62,4 +62,9 @@ class Main extends CI_Controller
     public function pedidos(){
         $this->load->view('pedidos');
     }
+
+    public function remover_produto($id_produto){
+        $valor['id_produto'] = $id_produto;
+        $this->load->view('remover_produto',$valor);
+    }
 }

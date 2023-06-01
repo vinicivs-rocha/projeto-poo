@@ -56,12 +56,12 @@ class Estoquista extends CI_Controller
     {
         $id_produto = $this->input->post("id_produto");
         $nome_produto = $this->input->post("nome_produto");
-        $codigo = $this->input->post("codigo_produto");
+        // $codigo = $this->input->post("codigo_produto");
         $novo_estoque = $this->input->post("novo_estoque");
         $novo_preco_produto = $this->input->post("novo_preco_produto");
         $produtos = [
             "nome_produto" => $nome_produto,
-            "codigo" => $codigo,
+            // "codigo" => $codigo,
             "estoque" => $novo_estoque,
             "saida" => "0",
             "preco" => $novo_preco_produto
@@ -77,4 +77,10 @@ class Estoquista extends CI_Controller
         $retorno = $this->estoquista_model->pesquisa_produtos($id_produto);
         echo json_encode($retorno);
     }
+
+    public function remover_produto($id_produto){
+        $this->estoquista_model->remover_produto($id_produto);
+        $this->load->view('estoque');
+    }
+
 }
