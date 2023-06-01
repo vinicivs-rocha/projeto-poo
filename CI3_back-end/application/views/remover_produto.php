@@ -15,7 +15,7 @@
     <body>
         <main>
             <form
-                action="#"
+                action="<?=base_url('estoquista/remover_produto/').$id_produto?>"
                 method="post"
                 class="container-fluid vh-100 d-flex flex-column justify-content-around align-items-center"
             >
