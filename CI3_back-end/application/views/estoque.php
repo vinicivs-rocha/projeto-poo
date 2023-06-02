@@ -11,6 +11,20 @@
     <link rel="stylesheet" href="static/estoque.css" />
 </head>
 
+<style>
+    .navbar {
+        background-color: #f5811e;
+    }
+
+    .button-icons::before {
+        font-size: 3em;
+    }
+
+    .btn-submit {
+        background-color: #f5811e;
+    }
+</style>
+
 <body>
     <header>
         <nav class="navbar navbar-expend-xxl shadow-sm">
@@ -45,7 +59,7 @@
         <div id="modalAtualizacao" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                    <form method="post" action="<?= base_url('atualiza_produto') ?>">
+                    <form method="post" action="<?= base_url('estoquista/atualiza_produto') ?>">
                         <input type="number" name="id_produto" id="modal-id" class="d-none">
                         <div class="modal-header">
                             <h5 class="modal-title">Atualizar produto</h5>
@@ -300,7 +314,7 @@
             modalNameInput.value = name
             modalPriceInput.value = price
             modalQuantityInput.value = quantity
-            removeButton.setAttribute('href', `<?=base_url('main/remover_produto')?>/${id}`)
+            removeButton.setAttribute('href', `<?= base_url('main/remover_produto') ?>/${id}`)
         })
 
         modalCriar.addEventListener('show.bs.modal', ({

@@ -28,7 +28,7 @@ class Dono extends CI_Controller
 
 			$dados["usuario"] = [
 				"email" => $email_usuario,
-				"senha" => md5($senha_usuario),
+				"senha" => $senha_usuario,
 				"tipo_usuario_id" => $tipo_usuario
 			];
 			$dados["funcionario"] = [

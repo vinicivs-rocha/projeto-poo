@@ -4,13 +4,12 @@ class Main_model extends CI_Model
 {
     public function logar($dados_login)
     {
-        $query = "SELECT count(id) as logado FROM usuarios WHERE email = '" . $dados_login["email"] . "' and senha = '" . $dados_login["senha"] . "'";
-        $logado = $this->db->query($query)->result_array();
-            if ($logado[0]["logado"] == 1) {
-            $query2 = "SELECT * FROM usuarios WHERE email = '" . $dados_login["email"] . "' and senha = '" . $dados_login["senha"] . "'";
-            $dados_login = $this->db->query($query2)->result_array();
+        $query = "SELECT count(id) as logado FROM usuarios WHERE email = '".$dados_login["email"]."' AND senha = '" . $dados_login["senha"] . "'";
+        $logado = $this->db->query($query)->row_array();
+            if ($logado["logado"] == 1) {
+            $query2 = "SELECT * FROM usuarios WHERE email = '" . $dados_login["email"] . "' AND senha = '" . $dados_login["senha"] . "'";
+            $dados_login = $this->db->query($query2)->row_array();
         }
-        //var_dump($dados_login);exit;
-        return array("logado" => $logado[0]["logado"], "dados_login" => $dados_login[0]);
+        return array("logado" => $logado["logado"], "dados_login" => $dados_login);
     }
 }

@@ -11,14 +11,11 @@ class Main extends CI_Controller
 
         $email = $this->input->post('username');
         $senha = $this->input->post('senha');
-
             $dados_login = [
                 "email" => $email,
-                "senha" => md5($senha)
+                "senha" => $senha
             ];
-
             $retorno = $this->main_model->logar($dados_login);
-
             if ($retorno["logado"] == 1) {
                 $this->montar_sessao($retorno["dados_login"]);
                 $id_usuario = $this->session->userdata('id_usuario');
