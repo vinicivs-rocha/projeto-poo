@@ -46,7 +46,7 @@
             </a>
         </div>
     </header>
-    <main class="container-xxl mt-5">
+    <main class="container-xxl mt-5" id="container">
         <div class="row mb-5">
             <div class="card p-0">
                 <div class="card-header d-flex flex-row justify-content-between">
@@ -186,6 +186,107 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(buscarPedidos)
+
+        let container = $("#container")
+
+        function buscarPedidos() {
+            $.ajax({
+                url: '<?= base_url('') ?>',
+                type: "GET",
+                dataType: "JSON",
+                cache: false,
+                success: montarPedidos
+            })
+        }
+
+        function montarPedidos(data) {
+            data.forEach((order, index) => {
+                let statusTextColor = order.status === "Confirmado" ? "text-success" : "text-danger"
+                let modalBody 
+                order.produtos.forEach(produto => {
+                    modalBody += `
+                        <tr>
+                            <td>
+                                ${produto.nome}
+                            </td>
+                            <td class="text-center">${produto.quantidade}</td>
+                        </tr>
+                    `
+                })
+                let modalFooter = order.status === "Confirmado" ? "" : waitingOrderModalFooter()
+
+                function waitingOrderModalFooter() {
+                    return `
+                        <div class="modal-footer justify-content-center">
+                            <button type="submit" class="btn btn-light btn-pedido">
+                                Confirmar
+                            </button>
+                        </div>
+                    `
+                }
+                container.append(`
+                    <div class="row mb-5">
+                        <div class="card p-0">
+                            <div class="card-header d-flex flex-row justify-content-between">
+                                <h6 class="mb-0">
+                                    Vendido por <strong>${order.vendedor.nome}</strong>
+                                </h6>
+                                <h6 class="mb-0">R$ ${order.preco}</h6>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">${order.id}</h5>
+                                <h6 class="card-subtitle ${statusTextColor}">
+                                    ${order.status}
+                                </h6>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    ${order.client.nome}
+                                </li>
+                                <li class="list-group-item">${order.client.cpf}</li>
+                                <li class="list-group-item">${order.client.endereco}</li>
+                            </ul>
+                            <div class="card-footer d-flex flex-row justify-content-end">
+                                <button type="button" class="btn btn-light btn-pedido" data-bs-toggle="modal" data-bs-target="#pedido-modal-${index}">
+                                Resumo de itens
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `)
+                $(document.body).append(`
+                    <div id="pedido-modal-${index}" class="modal" tabindex="-${index}">
+                        <div class="modal-dialog">
+                            <form action="url_pedido_confirmacao/${order.id}" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">${order.id}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-hover table-bordered align-middle">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nome</th>
+                                                    <th scope="col">Quantidade</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${modalBody}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    ${modalFooter}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `)
+            })
+        }
+    </script>
 </body>
 
 </html>
