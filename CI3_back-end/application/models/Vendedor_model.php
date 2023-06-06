@@ -46,7 +46,14 @@ class Vendedor_model extends CI_Model
                             ->from('pedidos')
                             ->join('funcionarios','funcionarios.id ="'.$id_usuario.'"')
                             ->join('clientes','pedidos.cliente_id = clientes.id')
-                            ->where('vendedor_id',$id_usuario);
+                            ->where('vendedor_id',$id_usuario)
+                            ->where('status_pedido_id','0');
+        return $this->db->get()->row_array();
+    }
+
+    public function buscar_cpf(){
+        $this->db->select('cpf')
+                            ->from('clientes');
         return $this->db->get()->result_array();
     }
 

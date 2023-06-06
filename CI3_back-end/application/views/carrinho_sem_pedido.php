@@ -96,7 +96,7 @@
 						</div>
 						<form action="<?=base_url('vendedor/criar_pedido_aberto')?>" method="post">
 							<div class="modal-body">
-								<input type="number" name="id_profissional" id="vendedor-id" class="d-none">
+								<input type="number" name="id_profissional" id="vendedor-id" class="d-none" value=<?=$user_id?>>
 								<label for="client-cpf" class="form-label"
 									>CPF do cliente:</label
 								>
@@ -130,15 +130,16 @@
 		<script>
 			$(document).ready(buscarListaCpf)
 			function buscarListaCpf() {
-				$().ajax({
-                    url: "<?=base_url()?>",
+				$.ajax({
+                    url: "<?=base_url('vendedor/buscar_cpf_clientes')?>",
                     type: "GET",
                     dataType: "JSON",
+                    cache: false,
                     success: montarListaCpf
                 })
 			}
 			function montarListaCpf(data) {
-				data.forEach(cpf => {
+				data.forEach(({cpf}) => {
 					$("#client-cpf-options").append(`
 						<option value="${cpf}"></option>
 					`)
@@ -146,9 +147,9 @@
 
 			}
 		</script>
-		<script>
+		<!-- <script>
 			let vendedorIdInput = document.querySelector("#vendedor-id")
-			vendedorIdInput.value = <?= $user_id ?>
-		</script>
+			vendedorIdInput.value = < ?= $user_id ?>
+		</script> -->
 	</body>
 </html>

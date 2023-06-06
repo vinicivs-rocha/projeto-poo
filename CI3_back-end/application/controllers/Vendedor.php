@@ -77,8 +77,8 @@ class Vendedor extends CI_Controller
 
     public function criar_pedido_aberto(){
         
-        $cpf = $this->input->post('id_profissional');
-        $id_profissional = $this->input->post('cpf');
+        $cpf = $this->input->post('cpf');
+        $id_profissional = $this->input->post('id_profissional');
         $this->vendedor_model->criar_pedido_aberto($cpf,$id_profissional);
         $this->verificar_carrinho();
     }
@@ -108,16 +108,21 @@ class Vendedor extends CI_Controller
         echo json_encode($retono);
     }
 
+    public function buscar_cpf_clientes(){
+       $retorno = $this->vendedor_model->buscar_cpf();
+       echo json_encode($retorno);
+    }
+
     public function verificar_carrinho()
     {
         $user_id = $this->session->userdata("id_usuario");
         $retorno = $this->vendedor_model->pedido_aberto($user_id);
+
         if ($retorno == 0 || $retorno == null) {
             $id['user_id'] = $user_id;
             $this->load->view('carrinho_sem_pedido', $id);
         } else {
-
-            $this->load->view('carrinho_com_pedido');
+            $this->load->view('carrinho_com_pedido',$retorno);
         }
     }
 
