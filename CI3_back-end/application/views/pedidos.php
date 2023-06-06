@@ -268,6 +268,7 @@
 			        url: "<?=base_url('estoquista/historico_de_venda')?>",
 			        type: "POST",
 			        dataType: "JSON",
+					cache: false,
 			        data: {id},
 			        success: (data) => {
                         montarModalProdutos(data, id, status, index)
