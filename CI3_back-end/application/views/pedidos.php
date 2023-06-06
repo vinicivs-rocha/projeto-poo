@@ -127,7 +127,6 @@
 					cache: false,
 			        data: {id},
 			        success: (data) => {
-                        console.log(data,id,status,index);
                         montarModalProdutos(data, id, status, index)
                     }
 			    });

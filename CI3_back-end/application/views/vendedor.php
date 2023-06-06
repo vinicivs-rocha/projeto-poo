@@ -138,7 +138,7 @@
                                 <label for="price" class="form-label">Preço</label>
                                 <div class="input-group">
                                     <span class="input-group-text">R$</span>
-                                    <input type="number" name="preco" id="price" class="form-control" step="0.01" />
+                                    <input type="number" name="preco" id="price" class="form-control" disabled readonly />
                                 </div>
                             </div>
                         </div>

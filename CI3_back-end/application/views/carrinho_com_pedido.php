@@ -131,36 +131,69 @@
                 </div>
             </div>
             <div class="container" id="footer">
-                <div class="row justify-content-between">
-                    <div class="col-4">
-                        <h5 class="h5 text-center">Dados do cliente</h6>
-                        <p class="fs-5">Nome: José Edilson</p>
-                        <p class="fs-5">Email: josesilva@gmail.com</p>
-                        <p class="fs-5">Endereço: Francisco Otaviano, 245</p>
-                        <p class="fs-5">Telefone: 81999999999</p>
-                    </div>
-                    <div class="col-4 d-flex flex-column justify-content-around align-items-center">
-                        <p class="fs-5">Vendedor: José Roberto</p>
-                        <form action="/pedido/finalizar" method="post">
-                            <button type="submit" class="btn btn-light bg-orange">Finalizar pedido</button>
-                        </form>
-                    </div>
-                </div>
+                
             </div>
         </main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
-            $.ajax({
-                url: "<?=base_url('estoquista/historico_de_venda')?>",
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    id: <?= id_pedido ?>
-                },
-                success: montarTabelaProdutos
-            });
+            let tabelaProdutos = $("#tabela-produtos")
+            let footer = $("#footer")
+            tabelaProdutos.ready(buscarListaProdutos)
+            footer.ready(montarDadosPedido)
+
+            function buscarListaProdutos() {
+                $.ajax({
+                    url: "<?=base_url('estoquista/historico_de_venda')?>",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        id: <?= id_pedido ?>
+                    },
+                    success: montarTabelaProdutos
+                });
+            }
             function montarTabelaProdutos(data) {
-                let tabelaProdutos = $("#tabela-produtos")
+                data.forEach(produto => {
+                    tabelaProdutos.append(`
+                        <div class="row mt-3 justify-content-between">
+                            <div class="col-1">
+                                <img src="${produto.image}" alt="Produto ${produto.id}" class="img-fluid">
+                            </div>
+                            <div class="col-2">
+                                <p class="text-center mb-0">${produto.nome_produto}</p>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <p class="mb-0 text-center fs-4">${produto.quantidade_comprada}</p>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <p class="mb-0 text-center fs-4">${produto.preco}</p>
+                            </div>
+                            <div class="col-2 d-flex justify-content-center align-items-center">
+                                <p class="mb-0 text-center fs-4">${produto.preco * produto.quantidade_comprada}</p>
+                            </div>
+                        </div>
+                    `)
+                });
+
+            }
+            function montarDadosPedido() {
+                footer.append(`
+                    <div class="row justify-content-between">
+                        <div class="col-4">
+                            <h5 class="h5 text-center">Dados do cliente</h6>
+                            <p class="fs-5">Nome: <?= $nome_cliente ?></p>
+                            <p class="fs-5">Email: <?= $email_cliente ?></p>
+                            <p class="fs-5">Endereço: <?= $endereco?></p>
+                            <p class="fs-5">Telefone: <?= $telefone ?></p>
+                        </div>
+                        <div class="col-4 d-flex flex-column justify-content-around align-items-center">
+                            <p class="fs-5">Vendedor: <?= $nome_vendedor ?></p>
+                            <form action="<?= base_url('/') ?><?= $pedido_id ?>" method="post">
+                                <button type="submit" class="btn btn-light bg-orange">Finalizar pedido</button>
+                            </form>
+                        </div>
+                    </div>
+                `)
             }
         </script>
     </body>
