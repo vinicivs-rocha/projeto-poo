@@ -27,6 +27,22 @@ class Vendedor_model extends CI_Model
         return $this->db->trans_complete();
     }
 
+    public function criar_pedido_aberto($cpf,$id_profissional){
+        // $dados_cliente = $this->db->select('id,nome,cpf')
+        //                                 ->from('clientes')
+        //                                 ->where('cpf ="'.$cpf.'"');
+        // $this->db->insert('pedidos',)
+    }
+
+    public function pedido_aberto($id_usuario){
+        $this->db->select('*')
+                            ->from('pedidos')
+                            ->join('funcionarios','funcionarios.id ="'.$id_usuario.'"')
+                            ->join('clientes','pedidos.cliente_id = clientes.id')
+                            ->where('vendedor_id',$id_usuario);
+        return $this->db->get()->result_array();
+    }
+
     public function retorna_produtos()
     {
         return $this->db->from("produtos")->get()->result_array();

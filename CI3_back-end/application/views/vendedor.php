@@ -267,7 +267,7 @@
         }) => {
             modalNameInput.value = relatedTarget.dataset.name
             modalPriceInput.value = relatedTarget.dataset.price
-            modalIdInput = relatedTarget.dataset.id
+            modalIdInput.value = relatedTarget.dataset.id
         })
     </script>
 </body>

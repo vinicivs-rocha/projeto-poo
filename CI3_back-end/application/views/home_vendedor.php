@@ -31,7 +31,7 @@
             </div>
             <div class="row d-flex flex-row justify-content-center align-items-center gx-4">
                 <div class="col-3">
-                    <a href="<?= base_url('main/verificar_carrinho') ?>" class="btn btn-light shadow">
+                    <a href="<?= base_url('vendedor/verificar_carrinho') ?>" class="btn btn-light shadow">
                         <i class="fi fi-rr-shopping-cart"></i>
                         <p class="mb-0 mt-3 text-capitalize">
                             Verificar Carrinho

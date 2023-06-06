@@ -7,10 +7,10 @@ class Vendedor extends CI_Controller
     {
         parent::__construct();
         $this->load->model("vendedor_model");
-		//pega o valor logado e caso seja diferente do tipo ele retorna para o base_url
+        //pega o valor logado e caso seja diferente do tipo ele retorna para o base_url
         $tipo_usuario_sessao = $this->session->userdata("tipo_usuario_id");
-		if ($tipo_usuario_sessao != 3 and $tipo_usuario_sessao != 1) { //vendedor
-            header("Location:". base_url("/"));
+        if ($tipo_usuario_sessao != 3 and $tipo_usuario_sessao != 1) { //vendedor
+            header("Location:" . base_url("/"));
         }
     }
 
@@ -100,6 +100,20 @@ class Vendedor extends CI_Controller
         echo json_encode($retono);
     }
 
+    public function verificar_carrinho()
+    {
+        $user_id = $this->session->userdata("id_usuario");
+        // $retorno = $this->vendedor_model->pedido_aberto($user_id);
+        $retorno = 0;
+        if ($retorno == 0 || $retorno == null) {
+            $id['user_id'] = $user_id;
+            $this->load->view('carrinho_sem_pedido', $id);
+        } else {
+
+            $this->load->view('carrinho_com_pedido');
+        }
+    }
+
     //para excluir, apenas apaga o valor na tela e clicar em salvar assim ele exclui o que quer e deixa o que já tem
     public function edita_dados_cliente()
     {
@@ -126,7 +140,8 @@ class Vendedor extends CI_Controller
     }
 
     //ou pega todos os clientes ou só o específico pelo id
-    public function pesquisa_cliente($id = null){
+    public function pesquisa_cliente($id = null)
+    {
         $retono = $this->vendedor_model->pesquisa_cliente($id);
         echo json_encode($retono);
     }

@@ -78,7 +78,7 @@
                                 aria-label="Close"
                             ></button>
                         </div>
-                        <form action="/pedido/criar" method="post">
+                        <form action="<?=base_url('vendedor/criar_pedido')?>" method="post">
                             <div class="modal-body">
                                 <label for="client-cpf" class="form-label"
                                     >CPF do cliente:</label
@@ -87,7 +87,7 @@
                                     class="form-control"
                                     list="client-cpf-options"
                                     id="client-cpf"
-                                    name="client-cpf"
+                                    name="cpf"
                                 />
                                 <datalist id="client-cpf-options">
                                     <option value="123.456.789-10"></option>

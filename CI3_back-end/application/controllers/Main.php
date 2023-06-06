@@ -44,9 +44,6 @@ class Main extends CI_Controller
     public function retornar_home_estoquista(){
         $this->load->view('home_estoquista');
     }
-    public function verificar_carrinho(){
-        $this->load->view('carrinho_sem_pedido');
-    }
 
     public function tela_vendedor(){
         $this->load->view('vendedor');
@@ -54,6 +51,10 @@ class Main extends CI_Controller
 
     public function carregar_estoque(){
         $this->load->view('estoque');
+    }
+
+    public function verificar_carrinho(){
+        var_dump('Que que tá acontencendo...');exit;
     }
 
     public function pedidos(){
