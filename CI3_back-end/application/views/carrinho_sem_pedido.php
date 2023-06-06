@@ -78,7 +78,7 @@
                                 aria-label="Close"
                             ></button>
                         </div>
-                        <form action="<?=base_url('vendedor/criar_pedido')?>" method="post">
+                        <form action="<?=base_url('vendedor/criar_pedido_aberto')?>" method="post">
                             <div class="modal-body">
                                 <label for="client-cpf" class="form-label"
                                     >CPF do cliente:</label
