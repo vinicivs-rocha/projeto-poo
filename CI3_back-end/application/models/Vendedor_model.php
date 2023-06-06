@@ -28,10 +28,17 @@ class Vendedor_model extends CI_Model
     }
 
     public function criar_pedido_aberto($cpf,$id_profissional){
-        // $dados_cliente = $this->db->select('id,nome,cpf')
-        //                                 ->from('clientes')
-        //                                 ->where('cpf ="'.$cpf.'"');
-        // $this->db->insert('pedidos',)
+        $dados_cliente = $this->db->select('id,nome_cliente,cpf')
+                                        ->from('clientes')
+                                        ->where('cpf ="'.$cpf.'"')->get()->row_array();
+        // var_dump($dados_cliente);exit;
+        $dados_pedido = [
+            'vendedor_id' => $id_profissional,
+            'cliente_id' => $dados_cliente['id'],
+            'status_pedido_id' => 0,
+            'preco_acordado' => 0
+        ];
+        return $this->db->insert('pedidos',$dados_pedido);
     }
 
     public function pedido_aberto($id_usuario){
