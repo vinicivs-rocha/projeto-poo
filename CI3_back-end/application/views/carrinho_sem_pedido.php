@@ -147,9 +147,5 @@
 
 			}
 		</script>
-		<!-- <script>
-			let vendedorIdInput = document.querySelector("#vendedor-id")
-			vendedorIdInput.value = < ?= $user_id ?>
-		</script> -->
 	</body>
 </html>

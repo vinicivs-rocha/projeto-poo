@@ -77,7 +77,7 @@
             </div>
         </header>
         <main>
-            <div class="container mt-5 ">
+            <div class="container mt-5" id="tabela-produtos">
                 <div class="row justify-content-between">
                     <div class="col-1">
                         <p class="fs-4 text-center mb-0">Imagem</p>
@@ -129,7 +129,9 @@
                         <p class="mb-0 text-center fs-4">R$ 67,50</p>
                     </div>
                 </div>
-                <div class="row mt-5 justify-content-between">
+            </div>
+            <div class="container" id="footer">
+                <div class="row justify-content-between">
                     <div class="col-4">
                         <h5 class="h5 text-center">Dados do cliente</h6>
                         <p class="fs-5">Nome: José Edilson</p>
@@ -149,14 +151,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
             $.ajax({
-                    url: "<?=base_url('estoquista/historico_de_venda')?>",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: {
-                        id: <?= id_pedido ?>
-                    },
-                    success: mo
-                });
+                url: "<?=base_url('estoquista/historico_de_venda')?>",
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    id: <?= id_pedido ?>
+                },
+                success: montarTabelaProdutos
+            });
+            function montarTabelaProdutos(data) {
+                let tabelaProdutos = $("#tabela-produtos")
+            }
         </script>
     </body>
 </html>
