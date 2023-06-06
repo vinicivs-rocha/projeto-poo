@@ -15,7 +15,29 @@
             rel="stylesheet"
             href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
         />
-        <link rel="stylesheet" href="../static/vendedor.css" />
+        <style>
+			.bg-orange {
+				background-color: #f5811e;
+			}
+
+			.nav-fi {
+				height: 1.5em;
+			}
+
+			.nav-fi::before {
+				font-size: 1.5em;
+			}
+
+			.header-fi {
+				height: 3rem;
+				font-size: 3rem;
+			}
+
+			.fi-add-cart {
+				height: 1.5rem;
+				font-size: 1.5rem;
+			}
+		</style>
     </head>
     <body>
         <header>
@@ -124,6 +146,18 @@
                 </div>
             </div>
         </main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            $.ajax({
+                    url: "<?=base_url('estoquista/historico_de_venda')?>",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        id: <?= id_pedido ?>
+                    },
+                    success: mo
+                });
+        </script>
     </body>
 </html>
 
