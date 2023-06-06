@@ -49,4 +49,29 @@ class Estoquista_model extends CI_Model
         $this->db->where('id',$id_produto);
         return $this->db->delete("produtos");
     }
+
+    public function buscar_pedidos(){
+        $this->db->select('*')
+                        ->from("pedidos")
+                        ->join("funcionarios","funcionarios.id = pedidos.vendedor_id")
+                        ->join("clientes","clientes.id = pedidos.cliente_id");
+                        return $this->db->get()->result_array();
+    }
+
+    public function buscar_produtos_historico($id_pedido){
+        $this->db->select('*')
+                        ->from('historico_venda')
+                        ->join('produtos',"produtos.id = historico_venda.produto_id")
+                        ->where('pedido_id',$id_pedido);
+                        return $this->db->get()->result_array();
+
+    }
+
+    public function confirmar_pedido_status($id_pedido){
+        $this->db->where("pedidos.id_pedido", $id_pedido);
+        $status_pedido = [
+            'status_pedido_id' => '1'
+        ];
+        return $this->db->update("pedidos", $status_pedido);
+    }
 }

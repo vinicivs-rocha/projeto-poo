@@ -83,4 +83,19 @@ class Estoquista extends CI_Controller
         $this->load->view('estoque');
     }
 
+    public function listar_pedidos(){
+        $retorno = $this->estoquista_model->buscar_pedidos();
+        echo json_encode($retorno);
+    }
+
+    public function historico_de_venda(){
+        $id_pedido = $this->input->post('id');
+        $retorno = $this->estoquista_model->buscar_produtos_historico($id_pedido);
+        echo json_encode($retorno);
+    }
+
+    public function confirmar_pedido($id_pedido){
+        $this->estoquista_model->confirmar_pedido_status($id_pedido);
+        $this->load->view('pedidos');
+    }
 }

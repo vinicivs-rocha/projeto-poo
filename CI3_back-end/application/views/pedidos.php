@@ -186,6 +186,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script>
         $(document).ready(buscarPedidos)
 
@@ -193,7 +194,7 @@
 
         function buscarPedidos() {
             $.ajax({
-                url: '<?= base_url('') ?>',
+                url: '<?= base_url('estoquista/listar_pedidos') ?>',
                 type: "GET",
                 dataType: "JSON",
                 cache: false,
@@ -203,20 +204,9 @@
 
         function montarPedidos(data) {
             data.forEach((order, index) => {
-                let statusTextColor = order.status === "Confirmado" ? "text-success" : "text-danger"
-                let modalBody 
-                order.produtos.forEach(produto => {
-                    modalBody += `
-                        <tr>
-                            <td>
-                                ${produto.nome}
-                            </td>
-                            <td class="text-center">${produto.quantidade}</td>
-                        </tr>
-                    `
-                })
-                let modalFooter = order.status === "Confirmado" ? "" : waitingOrderModalFooter()
-
+                let statusMessage = order.status_pedido_id === "1" ? "Confirmado" : "Aguardando confirmação"
+                let statusTextColor = order.status_pedido_id === "1" ? "text-success" : "text-danger"
+                let modalFooter = order.status === "1" ? "" : waitingOrderModalFooter()
                 function waitingOrderModalFooter() {
                     return `
                         <div class="modal-footer justify-content-center">
@@ -226,27 +216,37 @@
                         </div>
                     `
                 }
+                $.ajax({
+                    url: "<?=base_url('estoquista/historico_de_venda')?>",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: {
+                        id:order.id_pedido
+                    },
+                    success: (data) => {montarModalProdutos(data,index,modalFooter)}
+                });
+                
                 container.append(`
                     <div class="row mb-5">
                         <div class="card p-0">
                             <div class="card-header d-flex flex-row justify-content-between">
                                 <h6 class="mb-0">
-                                    Vendido por <strong>${order.vendedor.nome}</strong>
+                                    Vendido por <strong>${order.nome_funcionario}</strong>
                                 </h6>
-                                <h6 class="mb-0">R$ ${order.preco}</h6>
+                                <h6 class="mb-0">R$ ${order.preco_acordado}</h6>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">${order.id}</h5>
+                                <h5 class="card-title">Pedido ${order.id_pedido}</h5>
                                 <h6 class="card-subtitle ${statusTextColor}">
-                                    ${order.status}
+                                    ${statusMessage}
                                 </h6>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
-                                    ${order.client.nome}
+                                    ${order.nome_cliente}
                                 </li>
-                                <li class="list-group-item">${order.client.cpf}</li>
-                                <li class="list-group-item">${order.client.endereco}</li>
+                                <li class="list-group-item">${order.cpf}</li>
+                                <li class="list-group-item">${order.endereco}</li>
                             </ul>
                             <div class="card-footer d-flex flex-row justify-content-end">
                                 <button type="button" class="btn btn-light btn-pedido" data-bs-toggle="modal" data-bs-target="#pedido-modal-${index}">
@@ -256,13 +256,31 @@
                         </div>
                     </div>
                 `)
-                $(document.body).append(`
+            })
+        }
+
+        function montarModalProdutos(data,index,modalFooter){
+            let modalBody = '';
+            let pedido_id;
+            data.forEach(produto => {
+                    modalBody += `
+                        <tr>
+                            <td>
+                                ${produto.nome_produto}
+                            </td>
+                            <td class="text-center">${produto.quantidade_comprada}</td>
+                        </tr>
+                    `
+                    pedido_id = produto.pedido_id
+                })
+
+            $(document.body).append(`
                     <div id="pedido-modal-${index}" class="modal" tabindex="-${index}">
                         <div class="modal-dialog">
-                            <form action="url_pedido_confirmacao/${order.id}" method="post">
+                            <form action="<?=base_url('estoquista/confirmar_pedido/')?>${pedido_id}" method="post">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">${order.id}</h5>
+                                        <h5 class="modal-title">Pedido ${pedido_id}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -284,7 +302,6 @@
                         </div>
                     </div>
                 `)
-            })
         }
     </script>
 </body>

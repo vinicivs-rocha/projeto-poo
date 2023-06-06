@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <div class="col-5">
-                        <a href="<?base_url('main/pedidos')?>" class="btn btn-light shadow w-100 p-3">
+                        <a href="<?=base_url('main/pedidos')?>" class="btn btn-light shadow w-100 p-3">
                             <i class="fi fi-rr-cart-arrow-down"></i>
                             <p class="mb-0 mt-3 text-capitalize">
                                 pedidos em aberto
