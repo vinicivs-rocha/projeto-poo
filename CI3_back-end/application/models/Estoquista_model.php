@@ -40,6 +40,7 @@ class Estoquista_model extends CI_Model
         }
         return $this->db->get()->result_array();
     }
+    
     public function edita_dados_cliente($novos_dados_cliente)
     {
         return $this->db->update("clientes", $novos_dados_cliente);

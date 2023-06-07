@@ -5,13 +5,13 @@ class Vendedor_model extends CI_Model
     public function criar_pedido($dados_novo_pedido)
     {
         $this->db->trans_start();
-        $this->db->insert("pedidos", $dados_novo_pedido["pedido"]);
-        $pedido_id = $this->db->insert_id();
-        $dados_novo_pedido["produtos"] += ["pedido_id" => $pedido_id];
+        // $this->db->insert("pedidos", $dados_novo_pedido["pedido"]);
+        // $pedido_id = $this->db->insert_id();
+        // $dados_novo_pedido["produtos"] += ["pedido_id" => $pedido_id];
 
         foreach ($dados_novo_pedido["produtos"]['array_produtos'] as $key => $value) {
             $nova_venda = [
-                "pedido_id" => $pedido_id,
+                "pedido_id" => $value["pedido_id"],
                 "produto_id" => $value["id"],
                 "valor_produto" => $value["valor"],
                 "quantidade_comprada" => $value["quantidade_comprada"]
@@ -27,7 +27,15 @@ class Vendedor_model extends CI_Model
         return $this->db->trans_complete();
     }
 
+    public function finalizar_pedido($id){
+        $data = [
+            'status_pedido_id' => 2
+        ];
+        $this->db->where('id_pedido',$id);
+        return $this->db->update('pedidos',$data);
+    }
     public function criar_pedido_aberto($cpf,$id_profissional){
+        $this->db->trans_start();
         $dados_cliente = $this->db->select('id,nome_cliente,cpf')
                                         ->from('clientes')
                                         ->where('cpf ="'.$cpf.'"')->get()->row_array();
@@ -38,7 +46,10 @@ class Vendedor_model extends CI_Model
             'status_pedido_id' => 0,
             'preco_acordado' => 0
         ];
-        return $this->db->insert('pedidos',$dados_pedido);
+        $this->db->insert('pedidos',$dados_pedido);
+        $id_pedido = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $id_pedido;
     }
 
     public function pedido_aberto($id_usuario){
@@ -49,6 +60,14 @@ class Vendedor_model extends CI_Model
                             ->where('vendedor_id',$id_usuario)
                             ->where('status_pedido_id','0');
         return $this->db->get()->row_array();
+    }
+
+    public function buscar_produtos_historico($id_pedido){
+        $this->db->select('*')
+                        ->from('historico_venda')
+                        ->join('produtos',"produtos.id = historico_venda.produto_id")
+                        ->where('pedido_id',$id_pedido);
+                        return $this->db->get()->result_array();
     }
 
     public function buscar_cpf(){
@@ -79,5 +98,14 @@ class Vendedor_model extends CI_Model
     public function edita_dados_cliente($novos_dados_cliente)
     {
         return $this->db->update("clientes", $novos_dados_cliente);
+    }
+
+    public function pesquisa_produtos($id_produto = null)
+    {
+        $this->db->from("produtos");
+        if ($id_produto != null) {
+            $this->db->where("pedidos.id", $id_produto);
+        }
+        return $this->db->get()->result_array();
     }
 }

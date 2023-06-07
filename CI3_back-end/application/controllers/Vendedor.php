@@ -14,36 +14,25 @@ class Vendedor extends CI_Controller
         }
     }
 
-    public function criar_pedido() //função ajax para criar um pedido para um cliente
+    public function criar_pedido($id_pedido) //função ajax para criar um pedido para um cliente
     {
+        //  exemplo de como deve vir o array, caso precisem, este é o modelo de retorno que o
+        // ajax vai proporcionar, use esse nome de variável
 
-        /* exemplo de como deve vir o array, caso precisem, este é o modelo de retorno que o 
-        ajax vai proporcionar, use esse nome de variável
-
-        array_produtos = [
+        $array_produtos = [
             [
-                "id" => "2",
-                "valor" => "323",
-                "quantidade_comprada" => "13"
-            ],
-            [
-                "id" => "5",
-                "valor" => "23",
-                "quantidade_comprada" => "2"
-            ],
-            [
-                "id" => "7",
-                "valor" => "643",
-                "quantidade_comprada" => "35"
+                "id" => $this->input->post('id'),
+                "valor" => $this->input->post('preco'),
+                "quantidade_comprada" => $this->input->post('estoque'),
+                "pedido_id" => $id_pedido
             ]
         ];
-        */
 
-        $cliente_novo_pedido = $this->input->post("cliente_novo_pedido");
-        $array_produtos = $this->input->post("array_produtos"); //por a quantidade de cada produto junto do produto comprado.
-        $check_preco = $this->input->post("check_preco");
+        // $cliente_novo_pedido = $this->input->post("cliente_novo_pedido");
+        // $array_produtos = $this->input->post("array_produtos"); //por a quantidade de cada produto junto do produto comprado.
+        // $check_preco = $this->input->post("check_preco");
         $data = date("d/m/Y");
-        $vendedor_id = $this->session->userdata("vendedor_id");
+        // $vendedor_id = $this->session->userdata("vendedor_id");
 
         /*
         usar essa função para o checkbox quando for testar se o usuário está passando valor do produto ou um valor que entrou em acordo
@@ -54,33 +43,45 @@ class Vendedor extends CI_Controller
         }
         */
 
-        if ($check_preco == false) {
-            $preco_acordado = "F";
-        } else {
-            $preco_acordado = "T";
-        }
+        // if ($check_preco == false) {
+        //     $preco_acordado = "F";
+        // } else {
+        //     $preco_acordado = "T";
+        // }
 
-        $dados_novo_pedido["pedido"] = [
-            "vendedor_id" => $vendedor_id,
-            "data_venda" => $data,
-            "cliente_id" => $cliente_novo_pedido,
-            "preco_acordado" => $preco_acordado,
-        ];
+        // $dados_novo_pedido["pedido"] = [
+        //     "vendedor_id" => $vendedor_id,
+        //     "data_venda" => $data,
+        //     "cliente_id" => 'cliente',
+        //     "preco_acordado" => $preco_acordado,
+        // ];
 
 
         $dados_novo_pedido["produtos"] = [
             "array_produtos" => $array_produtos
         ];
-        $retorno = $this->vendedor_model->criar_pedido($dados_novo_pedido);
-        echo json_encode($retorno);
+        $this->vendedor_model->criar_pedido($dados_novo_pedido);
+        $this->verificar_carrinho();
     }
 
     public function criar_pedido_aberto(){
         
         $cpf = $this->input->post('cpf');
         $id_profissional = $this->input->post('id_profissional');
-        $this->vendedor_model->criar_pedido_aberto($cpf,$id_profissional);
-        $this->verificar_carrinho();
+        $id_pedido = $this->vendedor_model->criar_pedido_aberto($cpf,$id_profissional);
+        $this->montar_sessao_vendedor($id_pedido);
+        $dado['id_pedido'] = $this->session->userdata('id_pedido');
+        $this->load->view('vendedor',$dado);
+    }
+
+    public function finalizar_pedido($id_pedido){
+        $this->vendedor_model->finalizar_pedido($id_pedido);
+        $this->session->unset_userdata('id_pedido');
+        $this->load->view('home_vendedor');
+    }
+
+    public function montar_sessao_vendedor($dados){
+        $this->session->set_userdata('id_pedido',$dados);
     }
 
     public function registrar_cliente()
@@ -106,6 +107,12 @@ class Vendedor extends CI_Controller
 
         $retono = $this->vendedor_model->registrar_cliente($novo_cliente);
         echo json_encode($retono);
+    }
+
+    public function historico_de_venda(){
+        $id_pedido = $this->session->userdata('id_pedido');
+        $retorno = $this->vendedor_model->buscar_produtos_historico($id_pedido);
+        echo json_encode($retorno);
     }
 
     public function buscar_cpf_clientes(){
@@ -156,5 +163,12 @@ class Vendedor extends CI_Controller
     {
         $retono = $this->vendedor_model->pesquisa_cliente($id);
         echo json_encode($retono);
+    }
+
+    public function pesquisa_produtos()
+    {
+        $id_produto = $this->input->post("id_produto");
+        $retorno = $this->vendedor_model->pesquisa_produtos($id_produto);
+        echo json_encode($retorno);
     }
 }

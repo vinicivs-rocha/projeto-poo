@@ -124,7 +124,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- Adicionar rota de adição do produto ao pedido criado -->
-                <form action="" method="post">
+                <form action="<?=base_url('vendedor/criar_pedido/').$id_pedido?>" method="post">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col">
@@ -138,7 +138,7 @@
                                 <label for="price" class="form-label">Preço</label>
                                 <div class="input-group">
                                     <span class="input-group-text">R$</span>
-                                    <input type="number" name="preco" id="price" class="form-control" disabled readonly />
+                                    <input type="number" name="preco" id="price" class="form-control" readonly />
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,7 @@
 
         function buscarProdutos() {
             $.ajax({
-                url: '<?= base_url('estoquista/pesquisa_produtos') ?>',
+                url: '<?= base_url('vendedor/pesquisa_produtos') ?>',
                 type: "GET",
                 dataType: "JSON",
                 cache: false,
@@ -235,6 +235,7 @@
         }
 
         function montarProdutos(data) {
+            console.log(data);
             data.forEach(product => {
                 containerRow.append(`
                     <div class="col-4">
@@ -246,7 +247,7 @@
                             </div>
                             <img src="${product.image}" alt="${product.nome_produto}" class="card-img-bottom" />
                             <div class="card-footer d-flex flex-row justify-content-end">
-                                <button type="button" class="btn btn-light" data-id="${product.id}" data-name="${product.nome_produto}" data-price="${product.preco}" data-id="${product.id}" data-bs-toggle="modal" data-bs-target="#add-product-modal">
+                                <button type="button" class="btn btn-light" data-name="${product.nome_produto}" data-price="${product.preco}" data-id="${product.id}" data-bs-toggle="modal" data-bs-target="#add-product-modal">
                                     <i class="fi fi-rr-cart-arrow-down fi-add-cart d-flex"></i>
                                 </button>
                             </div>

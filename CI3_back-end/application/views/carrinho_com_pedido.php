@@ -95,40 +95,7 @@
                         <p class="fs-4 text-center mb-0">Subtotal</p>
                     </div>
                 </div>
-                <div class="row mt-3 justify-content-between">
-                    <div class="col-1">
-                        <img src="../static/images/produto-1.png" alt="Produto 1" class="img-fluid">
-                    </div>
-                    <div class="col-2">
-                        <p class="text-center mb-0">Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <p class="mb-0 text-center fs-4">1</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <p class="mb-0 text-center fs-4">R$ 22,50</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <p class="mb-0 text-center fs-4">R$ 22,50</p>
-                    </div>
-                </div>
-                <div class="row mt-3 justify-content-between">
-                    <div class="col-1">
-                        <img src="../static/images/produto-1.png" alt="Produto 1" class="img-fluid">
-                    </div>
-                    <div class="col-2">
-                        <p class="text-center mb-0">Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <p class="mb-0 text-center fs-4">3</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <p class="mb-0 text-center fs-4">R$ 22,50</p>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center align-items-center">
-                        <p class="mb-0 text-center fs-4">R$ 67,50</p>
-                    </div>
-                </div>
+                
             </div>
             <div class="container" id="footer">
                 
@@ -143,12 +110,9 @@
 
             function buscarListaProdutos() {
                 $.ajax({
-                    url: "<?=base_url('estoquista/historico_de_venda')?>",
-                    type: "POST",
+                    url: "<?=base_url('vendedor/historico_de_venda')?>",
+                    type: "GET",
                     dataType: "JSON",
-                    data: {
-                        id: <?= id_pedido ?>
-                    },
                     success: montarTabelaProdutos
                 });
             }
@@ -178,17 +142,17 @@
             }
             function montarDadosPedido() {
                 footer.append(`
-                    <div class="row justify-content-between">
+                    <div class="row justify-content-between mt-5">
                         <div class="col-4">
                             <h5 class="h5 text-center">Dados do cliente</h6>
                             <p class="fs-5">Nome: <?= $nome_cliente ?></p>
-                            <p class="fs-5">Email: <?= $email_cliente ?></p>
-                            <p class="fs-5">Endereço: <?= $endereco?></p>
+                            <p class="fs-5">Email: <?= $email ?></p>
+                            <p class="fs-5">Endereço: <?= $endereco ?></p>
                             <p class="fs-5">Telefone: <?= $telefone ?></p>
                         </div>
                         <div class="col-4 d-flex flex-column justify-content-around align-items-center">
-                            <p class="fs-5">Vendedor: <?= $nome_vendedor ?></p>
-                            <form action="<?= base_url('/') ?><?= $pedido_id ?>" method="post">
+                            <p class="fs-5">Vendedor: <?= $nome_funcionario ?></p>
+                            <form action="<?= base_url('vendedor/finalizar_pedido/') ?><?= $id_pedido ?>" method="post">
                                 <button type="submit" class="btn btn-light bg-orange">Finalizar pedido</button>
                             </form>
                         </div>

@@ -46,15 +46,12 @@ class Main extends CI_Controller
     }
 
     public function tela_vendedor(){
+        $this->session->user_data('id_pedido');
         $this->load->view('vendedor');
     }
 
     public function carregar_estoque(){
         $this->load->view('estoque');
-    }
-
-    public function verificar_carrinho(){
-        var_dump('Que que tá acontencendo...');exit;
     }
 
     public function pedidos(){
