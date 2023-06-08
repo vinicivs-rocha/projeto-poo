@@ -137,6 +137,34 @@ class Vendedor extends CI_Controller
         }
     }
 
+    public function cadastrar_cliente(){
+        $nome_cliente = $this->input->post("nome");
+        $cpf_cliente = $this->input->post("cpf");
+        $endereco_cliente = $this->input->post("endereco");
+        $telefone_cliente = $this->input->post("telefone");
+        $idade_cliente = $this->input->post("idade");
+        $email_cliente = $this->input->post("email");
+        $genero_cliente = $this->input->post("genero");
+
+        $dados_cliente = [
+            "nome_cliente" => $nome_cliente,
+            "cpf" => $cpf_cliente,
+            "endereco" => $endereco_cliente,
+            "telefone" => $telefone_cliente,
+            "idade" => $idade_cliente,
+            "email" => $email_cliente,
+            "genero" => $genero_cliente
+        ];
+
+        $retorno = $this->vendedor_model->cadastra_cliente($dados_cliente);
+        if($retorno == true){
+            redirect(base_url('main/tela_vendedor'));
+        }
+        else{
+            return false;
+        }
+    }
+
     //para excluir, apenas apaga o valor na tela e clicar em salvar assim ele exclui o que quer e deixa o que já tem
     public function edita_dados_cliente()
     {
@@ -148,6 +176,7 @@ class Vendedor extends CI_Controller
         $email_cliente = $this->input->post("email_cliente");
         $genero_cliente = $this->input->post("genero_cliente");
         $nacionalidade_cliente = $this->input->post("nacionalidade_cliente");
+
         $novos_dados_cliente = [
             "nome_cliente" => $nome_cliente,
             "cpf" => $cpf_cliente,

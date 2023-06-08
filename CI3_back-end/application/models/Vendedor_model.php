@@ -27,14 +27,17 @@ class Vendedor_model extends CI_Model
         return $this->db->trans_complete();
     }
 
-    public function finalizar_pedido($id){
+    public function finalizar_pedido($id)
+    {
         $data = [
             'status_pedido_id' => 2
         ];
         $this->db->where('id_pedido',$id);
         return $this->db->update('pedidos',$data);
     }
-    public function criar_pedido_aberto($cpf,$id_profissional){
+
+    public function criar_pedido_aberto($cpf,$id_profissional)
+    {
         $this->db->trans_start();
         $dados_cliente = $this->db->select('id,nome_cliente,cpf')
                                         ->from('clientes')
@@ -50,6 +53,11 @@ class Vendedor_model extends CI_Model
         $id_pedido = $this->db->insert_id();
         $this->db->trans_complete();
         return $id_pedido;
+    }
+
+    public function cadastra_cliente($dados)
+    {
+        return $this->db->insert('clientes',$dados);
     }
 
     public function pedido_aberto($id_usuario){

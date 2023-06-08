@@ -169,7 +169,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- Adicionar rota de criação de cliente -->
-                <form action="/" method="post">
+                <form action="<?=base_url('vendedor/cadastrar_cliente')?>" method="post">
                     <div class="modal-body">
                         <div class="row g-3 mb-3">
                             <div class="col-8">

@@ -17,6 +17,21 @@
         />
         <link rel="stylesheet" href="../static/home_vendedor.css" />
     </head>
+    
+    <style>
+    .screen-box {
+        background-color: #f5811e;
+        max-width: 583px;
+    }
+
+    [class^='fi']:before,
+    [class*=' fi']:before,
+    [class^='fi']:after,
+    [class*=' fi']:after {
+        font-size: 4em;
+    }
+</style>
+
     <body>
         <div class="container-sm vh-100 py-3">
             <div
