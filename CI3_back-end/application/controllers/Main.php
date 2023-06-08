@@ -3,8 +3,10 @@
 class Main extends CI_Controller
 {
     public function index(){
+        session_destroy();
         $this->load->view('login');
     }
+
     public function login()
     {
         $this->load->model("main_model");
@@ -47,7 +49,12 @@ class Main extends CI_Controller
 
     public function tela_vendedor(){
         $id['id_pedido'] = $this->session->userdata('id_pedido');
-        $this->load->view('vendedor',$id);
+        if($id['id_pedido'] != null && $id['id_pedido'] != ''){
+            $this->load->view('vendedor',$id);
+        }
+        else{
+            redirect('vendedor/verificar_carrinho');
+        }
     }
 
     public function carregar_estoque(){

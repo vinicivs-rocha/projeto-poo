@@ -61,7 +61,7 @@ class Vendedor extends CI_Controller
             "array_produtos" => $array_produtos
         ];
         $this->vendedor_model->criar_pedido($dados_novo_pedido);
-        $this->verificar_carrinho();
+        redirect(base_url('vendedor/verificar_carrinho'));
     }
 
     public function criar_pedido_aberto(){
@@ -128,11 +128,11 @@ class Vendedor extends CI_Controller
     {
         $user_id = $this->session->userdata("id_usuario");
         $retorno = $this->vendedor_model->pedido_aberto($user_id);
-
         if ($retorno == 0 || $retorno == null) {
             $id['user_id'] = $user_id;
             $this->load->view('carrinho_sem_pedido', $id);
         } else {
+            $this->session->set_userdata('id_pedido',$retorno['id_pedido']);
             $this->load->view('carrinho_com_pedido',$retorno);
         }
     }
