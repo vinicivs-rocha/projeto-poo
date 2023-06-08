@@ -59,7 +59,7 @@
         <div id="modalAtualizacao" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                    <form method="post" action="<?= base_url('estoquista/atualiza_produto') ?>">
+                    <form method="post" action="<?= base_url('estoquista/atualiza_produto') ?>">    
                         <input type="number" name="id_produto" id="modal-id" class="d-none">
                         <div class="modal-header">
                             <h5 class="modal-title">Atualizar produto</h5>
@@ -68,6 +68,7 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row gx-3">
+                                    <input type="hidden" id="id_produto" name="id_produto">
                                     <div class="col-4 d-flex flex-column align-items-center">
                                         <label for="imagem-produto" class="col-form-label">Imagem do produto</label>
                                         <img src="" alt="Imagem do produto" id="modal-image" class="img-fluid mb-3" />
@@ -102,7 +103,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="container-fluid d-flex flex-row justify-content-between align-items-center">
-                                <button type="submit" class="btn btn-submit">
+                                <button type="submit" class="btn btn-submit" id="updateButton">
                                     Atualizar
                                 </button>
                                 <!-- Modelar o ajax para essa função -->
@@ -173,7 +174,7 @@
             <div class="row row-cols-3 g-3" id="container-row">
                 <div class="col-xxl">
                     <div class="card">
-                        <img src="./static/images/produto-1.png" alt="imagem-produto-1" />
+                        <img src="<?=base_url('')?>../images/produto-1.png" alt="imagem-produto-1" />
                         <div class="card-body">
                             <h5 class="card-title">
                                 Argamassa AC I Cerâmica Uso Interno Kerakoll
@@ -192,7 +193,7 @@
                 </div>
                 <div class="col-xxl">
                     <div class="card">
-                        <img src="./static/images/produto-2.png" alt="imagem-produto-1" />
+                        <img src="<?=base_url('')?>../images/produto-2.png" alt="imagem-produto-1" />
                         <div class="card-body">
                             <h5 class="card-title">
                                 Argamassa para Assentamento de Porcelanato
@@ -213,7 +214,7 @@
                 </div>
                 <div class="col-xxl">
                     <div class="card">
-                        <img src="./static/images/produto-1.png" alt="imagem-produto-1" />
+                        <img src="<?=base_url('')?>../images/produto-1.png" alt="imagem-produto-1" />
                         <div class="card-body">
                             <h5 class="card-title">
                                 Argamassa AC I Cerâmica Uso Interno Kerakoll
@@ -291,6 +292,7 @@
         }
 
         const modalAtualizacao = document.querySelector('#modalAtualizacao')
+        const id_produto = document.querySelector('#id_produto')
         const modalCriar = document.querySelector('#modal-criar')
         const removeButton = document.querySelector('#remove-button')
         let modalImage = document.querySelector('#modal-image')
@@ -315,6 +317,7 @@
             modalPriceInput.value = price
             modalQuantityInput.value = quantity
             removeButton.setAttribute('href', `<?= base_url('main/remover_produto') ?>/${id}`)
+            id_produto.setAttribute('value', `${id}`)
         })
 
         modalCriar.addEventListener('show.bs.modal', ({

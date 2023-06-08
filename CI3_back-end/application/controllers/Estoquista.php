@@ -33,7 +33,6 @@ class Estoquista extends CI_Controller
         echo json_encode($retono);
     }
 
-    
     public function registro_produtos() //função ajax para registrar produtos novos usando post
     {
         $nome_produto = $this->input->post("nome_produto");
@@ -57,8 +56,8 @@ class Estoquista extends CI_Controller
         $id_produto = $this->input->post("id_produto");
         $nome_produto = $this->input->post("nome_produto");
         // $codigo = $this->input->post("codigo_produto");
-        $novo_estoque = $this->input->post("novo_estoque");
-        $novo_preco_produto = $this->input->post("novo_preco_produto");
+        $novo_estoque = $this->input->post("estoque");
+        $novo_preco_produto = $this->input->post("preco");
         $produtos = [
             "nome_produto" => $nome_produto,
             // "codigo" => $codigo,
@@ -66,9 +65,13 @@ class Estoquista extends CI_Controller
             "saida" => "0",
             "preco" => $novo_preco_produto
         ];
-
         $retorno = $this->estoquista_model->atualiza_produto($produtos, $id_produto);
-        echo json_encode($retorno);
+        if($retorno == true){
+            redirect(base_url('main/carregar_estoque'));
+        }
+        else{
+            var_dump('Deu erro');
+        }
     }
 
     public function pesquisa_produtos()
@@ -80,7 +83,7 @@ class Estoquista extends CI_Controller
 
     public function remover_produto($id_produto){
         $this->estoquista_model->remover_produto($id_produto);
-        $this->load->view('estoque');
+        redirect(base_url('main/carregar_estoque'));
     }
 
     public function listar_pedidos(){
@@ -96,6 +99,7 @@ class Estoquista extends CI_Controller
 
     public function confirmar_pedido($id_pedido){
         $this->estoquista_model->confirmar_pedido_status($id_pedido);
-        $this->load->view('pedidos');
+        redirect(base_url('main/pedidos'));
     }
+
 }

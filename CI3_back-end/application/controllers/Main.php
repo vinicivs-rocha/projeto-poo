@@ -46,8 +46,8 @@ class Main extends CI_Controller
     }
 
     public function tela_vendedor(){
-        $this->session->user_data('id_pedido');
-        $this->load->view('vendedor');
+        $id['id_pedido'] = $this->session->userdata('id_pedido');
+        $this->load->view('vendedor',$id);
     }
 
     public function carregar_estoque(){

@@ -45,7 +45,7 @@
 				</div>
 			</nav>
 			<div class="container-fluid mt-3 d-flex flex-row justify-content-between">
-				<a href="#" class="text-decoration-none">
+				<a href="<?=base_url('main/retornar_home_estoquista')?>" class="text-decoration-none">
 					<button
 						type="button"
 						class="btn btn-light d-flex flex-column align-items-center shadow-sm"

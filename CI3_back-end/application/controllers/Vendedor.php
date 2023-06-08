@@ -70,6 +70,10 @@ class Vendedor extends CI_Controller
         $id_profissional = $this->input->post('id_profissional');
         $id_pedido = $this->vendedor_model->criar_pedido_aberto($cpf,$id_profissional);
         $this->montar_sessao_vendedor($id_pedido);
+        redirect(base_url('vendedor/redirect'));
+    }
+
+    public function redirect(){
         $dado['id_pedido'] = $this->session->userdata('id_pedido');
         $this->load->view('vendedor',$dado);
     }
@@ -170,5 +174,10 @@ class Vendedor extends CI_Controller
         $id_produto = $this->input->post("id_produto");
         $retorno = $this->vendedor_model->pesquisa_produtos($id_produto);
         echo json_encode($retorno);
+    }
+
+    public function retornar_home_vendedor()
+    {
+        $this->load->view('home_vendedor');
     }
 }

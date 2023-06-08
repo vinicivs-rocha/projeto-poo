@@ -38,7 +38,7 @@
                 </div>
             </form>
             <div class="container d-flex flex-row justify-content-center">
-                <img src="../static/images/WQPGBIIWQGBFWPGQBFIWIBQIGFB 2.svg" alt="Logomarca da Empresa" class="w-100" />
+                <img src="<?=base_url('')?>../images/WQPGBIIWQGBFWPGQBFIWIBQIGFB2.svg" alt="Logomarca da Empresa" class="w-100" />
             </div>
         </div>
     </div>

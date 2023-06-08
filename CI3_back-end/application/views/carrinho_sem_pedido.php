@@ -59,7 +59,7 @@
 				</div>
 			</nav>
 			<div class="container mt-3 mb-3 d-flex flex-row justify-content-between">
-				<a href="./vendedor.php" class="text-decoration-none">
+				<a href="<?=base_url('vendedor/retornar_home_vendedor')?>" class="text-decoration-none">
 					<button
 						type="button"
 						class="btn btn-light d-flex flex-column align-items-center shadow"
@@ -107,8 +107,6 @@
 									name="cpf"
 								/>
 								<datalist id="client-cpf-options">
-									<option value="123.456.789-10"></option>
-									<option value="111.222.333-44"></option>
 								</datalist>
 							</div>
 							<div class="modal-footer">

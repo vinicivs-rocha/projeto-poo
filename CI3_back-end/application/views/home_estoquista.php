@@ -45,7 +45,7 @@
                 </div>
                 <div class="row">
                     <img
-                        src="../static/images/WQPGBIIWQGBFWPGQBFIWIBQIGFB 2.svg"
+                        src="<?=base_url('')?>../images/WQPGBIIWQGBFWPGQBFIWIBQIGFB2.svg"
                         alt="Logomarca da Empresa"
                         class="w-100"
                     />

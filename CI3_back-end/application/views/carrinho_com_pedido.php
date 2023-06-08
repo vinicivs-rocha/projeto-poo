@@ -65,7 +65,7 @@
             <div
                 class="container mt-3 mb-3 d-flex flex-row justify-content-between"
             >
-                <a href="./vendedor.php" class="text-decoration-none">
+                <a href="<?=base_url('vendedor/retornar_home_vendedor')?>" class="text-decoration-none">
                     <button
                         type="button"
                         class="btn btn-light d-flex flex-column align-items-center shadow"
