@@ -69,11 +69,6 @@
                             <div class="container-fluid">
                                 <div class="row gx-3">
                                     <input type="hidden" id="id_produto" name="id_produto">
-                                    <div class="col-4 d-flex flex-column align-items-center">
-                                        <label for="imagem-produto" class="col-form-label">Imagem do produto</label>
-                                        <img src="" alt="Imagem do produto" id="modal-image" class="img-fluid mb-3" />
-                                        <input type="file" class="form-control" id="imagem-produto" name="image" />
-                                    </div>
                                     <div class="col-8">
                                         <div class="row">
                                             <div class="col">
@@ -127,11 +122,6 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row gx-3">
-                                    <div class="col-4 d-flex flex-column align-items-center">
-                                        <label for="imagem-produto" class="col-form-label">Imagem do produto</label>
-                                        <img src="<?=base_url('')?>../images/empty.png" alt="Imagem do produto" id="modal-criar-image" class="img-fluid mb-3" />
-                                        <input type="file" class="form-control" name="image" />
-                                    </div>
                                     <div class="col-8">
                                         <div class="row">
                                             <div class="col">
@@ -195,11 +185,7 @@
             data.forEach(product => {
                 containerRow.append(`
                     <div class="col-xxl">
-                        <div class="card">
-                            <img
-                                src="<?=base_url('')?>../images/empty.png"
-                                alt="imagem-produto-1"
-                            />
+                        <div class="card">=
                             <div class="card-body">
                                 <h5 class="card-title">
                                     ${product.nome_produto}

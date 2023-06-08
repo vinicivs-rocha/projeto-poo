@@ -79,9 +79,6 @@
         <main>
             <div class="container mt-5" id="tabela-produtos">
                 <div class="row justify-content-between">
-                    <div class="col-1">
-                        <p class="fs-4 text-center mb-0">Imagem</p>
-                    </div>
                     <div class="col-2">
                         <p class="fs-4 text-center mb-0">Nome</p>
                     </div>
@@ -120,9 +117,6 @@
                 data.forEach(produto => {
                     tabelaProdutos.append(`
                         <div class="row mt-3 justify-content-between">
-                            <div class="col-1">
-                                <img src="${produto.image}" alt="Produto ${produto.id}" class="img-fluid">
-                            </div>
                             <div class="col-2">
                                 <p class="text-center mb-0">${produto.nome_produto}</p>
                             </div>

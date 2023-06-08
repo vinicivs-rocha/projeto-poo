@@ -197,7 +197,6 @@
                                     ${product.nome_produto}
                                 </h5>
                             </div>
-                            <img src="${product.image}" alt="${product.nome_produto}" class="card-img-bottom" />
                             <div class="card-footer d-flex flex-row justify-content-end">
                                 <button type="button" class="btn btn-light" data-name="${product.nome_produto}" data-price="${product.preco}" data-id="${product.id}" data-bs-toggle="modal" data-bs-target="#add-product-modal">
                                     <i class="fi fi-rr-cart-arrow-down fi-add-cart d-flex"></i>
