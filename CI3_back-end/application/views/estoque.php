@@ -172,67 +172,6 @@
         </div>
         <div class="container-fluid gap-3 mt-3 mb-3">
             <div class="row row-cols-3 g-3" id="container-row">
-                <div class="col-xxl">
-                    <div class="card">
-                        <img src="<?=base_url('')?>../images/produto-1.png" alt="imagem-produto-1" />
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Argamassa AC I Cerâmica Uso Interno Kerakoll
-                                Cimentolit 20Kg
-                            </h5>
-                        </div>
-                        <div class="card-footer d-flex flex-row justify-content-between">
-                            <p class="mb-0 d-flex align-items-center">
-                                Quantidade: 80
-                            </p>
-                            <button type="button" class="btn btn-light d-flex" data-bs-toggle="modal" data-bs-target="#modalAtualizacao" data-image="./static/images/produto-1.png" data-name="Argamassa AC I Cerâmica Uso Interno Kerakoll Cimentolit 20Kg" data-price="120.00" data-quantity="80" data-id="1">
-                                <i class="fi fi-rr-menu-dots"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl">
-                    <div class="card">
-                        <img src="<?=base_url('')?>../images/produto-2.png" alt="imagem-produto-1" />
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Argamassa para Assentamento de Porcelanato
-                                Interno E Externo 20kg Branca
-                            </h5>
-                        </div>
-                        <div class="card-footer d-flex flex-row justify-content-between">
-                            <p class="mb-0 d-flex align-items-center">
-                                Quantidade: 75
-                            </p>
-                            <a href="#" class="text-decoration-none">
-                                <button type="button" class="btn btn-light d-flex" data-bs-toggle="modal" data-bs-target="#modalAtualizacao" data-image="./static/images/produto-2.png" data-name="Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" data-price="142.50" data-quantity="100" data-id="2">
-                                    <i class="fi fi-rr-menu-dots"></i>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl">
-                    <div class="card">
-                        <img src="<?=base_url('')?>../images/produto-1.png" alt="imagem-produto-1" />
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                Argamassa AC I Cerâmica Uso Interno Kerakoll
-                                Cimentolit 20Kg
-                            </h5>
-                        </div>
-                        <div class="card-footer d-flex flex-row justify-content-between">
-                            <p class="mb-0 d-flex align-items-center">
-                                Quantidade: 80
-                            </p>
-                            <a href="#" class="text-decoration-none">
-                                <button type="button" class="btn btn-light d-flex" data-bs-toggle="modal" data-bs-target="#modalAtualizacao" data-image="./static/images/produto-1.png" data-name="Argamassa AC I Cerâmica Uso Interno Kerakoll Cimentolit 20Kg" data-price="120.00" data-quantity="80" data-id="3">
-                                    <i class="fi fi-rr-menu-dots"></i>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

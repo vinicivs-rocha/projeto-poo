@@ -64,54 +64,6 @@
     </header>
     <main class="container">
         <div class="row g-3" id="container-row">
-            <div class="col-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            Argamassa para Assentamento de Porcelanato
-                            Interno E Externo 20kg Branca
-                        </h5>
-                    </div>
-                    <img src="<?=base_url('')?>../images/produto-1.png" alt="Imagem da Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" class="card-img-bottom" />
-                    <div class="card-footer d-flex flex-row justify-content-end">
-                        <button type="button" class="btn btn-light" data-id="1" data-name="Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" data-price="13.45" data-bs-toggle="modal" data-bs-target="#add-product-modal">
-                            <i class="fi fi-rr-cart-arrow-down fi-add-cart d-flex"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            Argamassa para Assentamento de Porcelanato
-                            Interno E Externo 20kg Branca
-                        </h5>
-                    </div>
-                    <img src="<?=base_url('')?>../images/produto-1.png" alt="Imagem da Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" class="card-img-bottom" />
-                    <div class="card-footer d-flex flex-row justify-content-end">
-                        <button type="button" class="btn btn-light" data-id="1" data-name="Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" data-price="13.45" data-bs-toggle="modal" data-bs-target="#add-product-modal">
-                            <i class="fi fi-rr-cart-arrow-down fi-add-cart d-flex"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">
-                            Argamassa para Assentamento de Porcelanato
-                            Interno E Externo 20kg Branca
-                        </h5>
-                    </div>
-                    <img src="<?=base_url('')?>../images/produto-1.png" alt="Imagem da Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" class="card-img-bottom" />
-                    <div class="card-footer d-flex flex-row justify-content-end">
-                        <button type="button" class="btn btn-light" data-id="1" data-name="Argamassa para Assentamento de Porcelanato Interno E Externo 20kg Branca" data-price="13.45" data-bs-toggle="modal" data-bs-target="#add-product-modal">
-                            <i class="fi fi-rr-cart-arrow-down fi-add-cart d-flex"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
     <div class="modal fade" tabindex="-1" id="add-product-modal">
